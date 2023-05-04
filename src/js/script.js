@@ -69,7 +69,7 @@ import * as dat from 'dat.gui';
     // directionalLight.position.set(-30,50,0);
     // directionalLight.castShadow = true;
     // directionalLight.shadow.camera.bottom = -12;
-    //
+
     // const dLightHelper = new THREE.DirectionalLightHelper(directionalLight, 5);
     // scene.add(dLightHelper);
     //
@@ -79,9 +79,19 @@ import * as dat from 'dat.gui';
     const spotLight = new THREE.SpotLight(0xFFFFFF);
     scene.add(spotLight);
     spotLight.position.set(-100,100,0);
+    spotLight.castShadow = true;
+    spotLight.angle = 0.2;
 
     const sLightHelper = new THREE.SpotLightHelper(spotLight);
     scene.add(sLightHelper);
+
+    scene.fog = new THREE.SpotLightHelper(spotLight);
+    scene.add(sLightHelper);
+
+    // scene.fog = new THREE.Fog(0xFFFFFF, 0, 200);
+    scene.fog = new THREE.FogExp2(0xFFFFFF, 0.01);
+
+    renderer.setClearColor(0xFFEA00);
 
     const gui = new dat.GUI();
 
@@ -103,8 +113,8 @@ import * as dat from 'dat.gui';
 
     gui.add(options, 'speed', 0, .1);
     gui.add(options, "angel", 0, 0.1);
-    gui.add(options, "penumbers",0,1);
-    gui.add(options, "aintensity", 0, 1);
+    gui.add(options, "penumbra",0,1);
+    gui.add(options, "intensity", 0, 1);
 
 
 
